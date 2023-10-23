@@ -1,0 +1,453 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Pour occuper la hauteur totale de la fenêtre du navigateur */
+  margin: 0; /* Pour supprimer les marges par défaut du body */      
+  text-align: center;
+  background-color: #ffffff;
+ }
+ h1{
+  font-family: 'Poppins', sans-serif;
+ }
+ .board {        
+  margin-left: 20%;
+  width: 350px;
+ }
+ .board button {
+  height: 100px;
+  width: 100px;
+  margin: 0px;
+  padding: 0px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 3em;
+}
+
+ #messages {
+  width: 300px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}  
+
+ .card {
+  position: relative;
+  width: 565px;
+  height: 545px;
+  border-radius: 14px;
+  z-index: 1111;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 rgb(73, 175, 90);
+  background-color: rgb(220, 220, 220);
+}
+
+.victory{
+  animation: victory 1s infinite ease;
+}
+
+
+@keyframes victory {
+  0% {
+    box-shadow: 0 0 0 rgb(73, 175, 90);
+  }
+  50% {
+    box-shadow: 0 0 100px rgb(73, 175, 90);
+  }
+  100% {
+    box-shadow: 0 0 0 rgb(73, 175, 90);
+  }
+}
+
+.defaite{
+  animation: defaite 2s infinite ease;
+}
+
+
+@keyframes defaite {
+  0% {
+    box-shadow: 0 0 0 rgb(175, 73, 73);
+  }
+  50% {
+    box-shadow: 0 0 100px rgb(175, 73, 73);
+  }
+  100% {
+    box-shadow: 0 0 0 rgb(175, 73, 73);
+  }
+}
+
+
+.nul{
+  animation: nul 2s infinite ease;
+}
+
+
+@keyframes nul {
+  0% {
+    box-shadow: 0 0 0px #3700ff;
+  }
+  25% {
+    box-shadow: 0 0 100px #3700ff;
+  }
+  75% {
+    box-shadow: 0 0 100px #ff0000;
+  }
+  100% {
+    box-shadow: 0 0 0 #ff0000;
+  }
+}
+
+.your-turn {
+  font-weight: bold;
+  color: rgb(24, 102, 37); /* Couleur pour "A ton tour !" */
+}
+
+.opponent-turn {
+font-weight: bold;
+  color: rgb(175, 73, 73); /* Couleur pour "Au tour de ton adversaire" */
+}
+
+.match-nul {
+font-weight: bold;
+animation: match-nul 2s infinite ease;
+}
+
+@keyframes match-nul {
+0% {
+  color: #000;
+}
+25% {
+  color: #3700ff;
+}
+75% {
+  color: #ff0000;
+}
+100% {
+  color: #000;
+}
+}
+
+
+
+.bg {
+  position: absolute;
+  width: 550px;
+  height: 530px;
+  z-index: 2;
+  background: rgb(220, 220, 220);
+  backdrop-filter: blur(24px);
+  border-radius: 10px;
+  overflow: hidden;
+  outline: 2px solid rgb(220, 220, 220);
+}
+
+.blob {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 560px;
+  height: 540px;
+  border-radius: 50%;
+  background-color: #3700ff;
+  opacity: 1;
+  filter: blur(12px);
+  animation: blob-bounce 5s infinite ease;
+}
+
+@keyframes blob-bounce {
+  0% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+  }
+
+  50% {
+    transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+  }
+
+  75% {
+    transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+  }
+
+  100% {
+    transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+}
+
+.blob2 {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: 560px;
+  height: 540px;
+  border-radius: 50%;
+  background-color: #ff0000;
+  opacity: 1;
+  filter: blur(12px);
+  animation: blob-bounce2 5s infinite ease;
+}
+
+@keyframes blob-bounce2 {
+  0% {
+      transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+  }
+
+  25% {
+    transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+  }
+
+  50% {
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+  }
+
+  75% {
+      transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+  }
+
+  100% {
+      transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+  }
+}
+
+.send {
+font-family: 'Poppins', sans-serif;
+font-size: 18px;
+background: linear-gradient(to bottom, #4dc7d9 0%,#66a6ff 100%);
+color: white;
+padding: 0.8em 1.2em;
+display: flex;
+align-items: center;
+justify-content: center;
+border: none;
+border-radius: 25px;
+box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+transition: all 0.3s;
+text-decoration: none;
+position: fixed;
+bottom: 10%; /* Ajustez la distance par rapport au bas de la fenêtre */
+left: 50%;
+transform: translateX(-50%);
+z-index: 1000; 
+}
+
+.send:hover {
+box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.send:active {
+transform: scale(0.95);
+box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.send span {
+display: block;
+margin-left: 0.4em;
+transition: all 0.3s;
+}
+
+.send svg {
+width: 18px;
+height: 18px;
+fill: white;
+transition: all 0.3s;
+}
+
+.send .svg-wrapper {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+background-color: rgba(255, 255, 255, 0.2);
+margin-right: 0.5em;
+transition: all 0.3s;
+}
+
+.send:hover .svg-wrapper {
+background-color: rgba(255, 255, 255, 0.5);
+}
+
+.send:hover svg {
+transform: rotate(45deg);
+}
+
+.send {
+font-family: 'Poppins', sans-serif;
+font-size: 18px;
+background: royalblue;
+color: white;
+padding: 0.6em 1em;
+padding-left: 0.9em;
+display: flex;
+align-items: center;
+border: none;
+border-radius: 100px;
+overflow: hidden;
+transition: all 0.2s;
+}
+
+.send span {
+display: block;
+margin-left: 0.3em;
+transition: all 0.3s ease-in-out;
+}
+
+.send svg {
+display: block;
+transform-origin: center center;
+transition: transform 0.3s ease-in-out;
+}
+
+.send:hover .svg-wrapper {
+animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.send:hover svg {
+transform: translateX(4em) rotate(45deg) scale(1.1);
+}
+
+.send:hover span {
+transform: translateX(10em);
+}
+
+.send:active {
+transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+from {
+  transform: translateY(0.1em);
+}
+
+to {
+  transform: translateY(-0.1em);
+}
+}
+
+.btn-conteiner {
+display: flex;
+flex-direction: column; /* Organise les boutons en colonnes */
+align-items: center; /* Centre les boutons horizontalement */
+--color-text: #ffffff;
+--color-background: #ff135a;
+--color-outline: #ff145b80;
+--color-shadow: #00000080;
+position: fixed;
+bottom: 10px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 1;
+}
+
+.btn-content {
+display: flex;
+align-items: center;
+padding: 0 20px;
+text-decoration: none;
+font-family: 'Poppins', sans-serif;
+font-weight: 600;
+font-size: 17px;
+color: var(--color-text);
+background: var(--color-background);
+transition: 1s;
+border-radius: 100px;
+box-shadow: 0 0 0.2em 0 var(--color-background);
+margin-bottom: 10px; /* Ajoute un espacement entre les boutons */
+}
+
+.btn-content:hover,
+.btn-content:focus {
+transition: 0.5s;
+-webkit-animation: btn-content 1s;
+animation: btn-content 1s;
+outline: 0.1em solid transparent;
+outline-offset: 0.2em;
+box-shadow: 0 0 0.4em 0 var(--color-background);
+}
+
+.btn-content .icon-arrow {
+transition: 0.5s;
+margin-right: 0px;
+transform: scale(0.4);
+}
+
+.btn-content:hover .icon-arrow {
+transition: 0.5s;
+margin-right: 25px;
+}
+
+.icon-arrow {
+width: 20px;
+margin-left: 15px;
+position: relative;
+top: 6%;
+}
+
+/* SVG */
+#arrow-icon-one {
+transition: 0.4s;
+transform: translateX(-60%);
+}
+
+#arrow-icon-two {
+transition: 0.5s;
+transform: translateX(-30%);
+}
+
+.btn-content:hover #arrow-icon-three {
+animation: color_anim 1s infinite 0.2s;
+}
+
+.btn-content:hover #arrow-icon-one {
+transform: translateX(0%);
+animation: color_anim 1s infinite 0.6s;
+}
+
+.btn-content:hover #arrow-icon-two {
+transform: translateX(0%);
+animation: color_anim 1s infinite 0.4s;
+}
+
+
+/* SVG animations */
+@keyframes color_anim {
+0% {
+  fill: white;
+}
+
+50% {
+  fill: var(--color-background);
+}
+
+100% {
+  fill: white;
+}
+}
+
+/* Button animations */
+@-webkit-keyframes btn-content {
+0% {
+  outline: 0.2em solid var(--color-background);
+  outline-offset: 0;
+}
+}
+
+@keyframes btn-content {
+0% {
+  outline: 0.2em solid var(--color-background);
+  outline-offset: 0;
+}
+}
